@@ -1,11 +1,12 @@
 using System.IO;
+using RogueGenesiaModTemplate.Logging;
 using UnityEngine;
 
 namespace RogueGenesiaModTemplate.Helpers;
 
 public static class SpriteHelper
 {
-    private static Texture2D LoadPNGIntoTexture(string filePath) {
+    private static Texture2D LoadTexture(string filePath) {
         Texture2D tex = null;
 
         if (File.Exists(filePath)) {
@@ -20,7 +21,7 @@ public static class SpriteHelper
             }
             else
             {
-                Plugin.Log.LogInfo($"Texture couldn't be loaded: {filePath}");
+                Log.Warn($"Texture couldn't be loaded: {filePath}");
             }
         }
 
@@ -29,7 +30,7 @@ public static class SpriteHelper
 
     public static Sprite LoadSpriteFromFile(string filePath)
     {
-        var tex = LoadPNGIntoTexture(filePath);
+        var tex = LoadTexture(filePath);
         return Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(0.5f, 0.5f), 100.0f);
     }
 }
