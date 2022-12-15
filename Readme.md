@@ -15,10 +15,6 @@ Make sure you are getting the latest `Unity.IL2CPP-win-x64` version from their [
 1. Clone this repo
 2. Rename [RogueGenesiaModTemplate.csproj](RogueGenesiaModTemplate.csproj) to your mods name.
 3. Change the assembly name to your mods name, so the generated DLL file reflects that name.
-4. After you've started the game once with BepInEx installed, it will generate all the files you need. Open the folder `<Rogue Genesia Game folder>\BepInEx\interop`
-5. Copy `Il2Cppmscorlib.dll`, `Il2CppSystem.Core.dll` and `UnityEngine.dll` from that `interop` folder to the [Libraries](Libraries) folder and add them as references.
-6. Copy `RogueGenesia.dll` and `ModGenesia.dll` to the [Libraries](Libraries) folder and add them as references. **NOTE:** Whenever the game updates, these DLLs will likely need to be copied again.
-7. Copy any other Unity DLLs that you might need.
 
 That's it, you're ready to mod Rogue Genesia!
 
@@ -26,7 +22,7 @@ That's it, you're ready to mod Rogue Genesia!
 
 ### How do I log a debug message?
 
-From anywhere in your code, just do `Plugin.Log.LogDebug`
+You can use the `Log` class from anywhere in your code. Just call `Log.Info()` and similar and it will log events with your Plugins name.
 
 ### How do I intercept game events?
 
@@ -41,13 +37,13 @@ public static class PauseMenuOpenPatches
     [HarmonyPrefix]
     public static void Prefix(PauseMenu __instance)
     {
-        Plugin.Log.LogInfo($"Method called BEFORE Pause Menu opened in Game");
+        Log.Info($"Method called BEFORE Pause Menu opened in Game");
     }
 
     [HarmonyPostfix]
     public static void Postfix(PauseMenu __instance)
     {
-        Plugin.Log.LogInfo($"Method called BEFORE Pause Menu opened in Game");
+        Log.Info($"Method called AFTER Pause Menu opened in Game");
     }
 }
 ```

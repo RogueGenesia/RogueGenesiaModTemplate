@@ -6,7 +6,7 @@ namespace RogueGenesiaModTemplate.Helpers;
 
 public static class SpriteHelper
 {
-    private static Texture2D LoadTexture(string filePath) {
+    public static Texture2D LoadTexture(string filePath) {
         Texture2D tex = null;
 
         if (File.Exists(filePath)) {
